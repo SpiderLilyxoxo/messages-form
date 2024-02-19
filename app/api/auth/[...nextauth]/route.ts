@@ -38,11 +38,11 @@ export const authOptions = {
 			} catch (error) {
 				throw new Error("Failed to Sign In.")
 			}
-		  }
-		})
+		  } 
+		} as any)
 	  ],
 	  callbacks: {
-		async jwt({token, user}) {
+		async jwt({token, user}: any) {
 			if (user) {
 				token.username = user.username;
 				token.email =  user.email
@@ -51,7 +51,7 @@ export const authOptions = {
 			
 			return token
 		},
-		async session({session, token}) {
+		async session({session, token}: any) {
 			if (token) {
 				session.user.username = token.username;
 				session.user.email =  token.email
